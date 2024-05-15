@@ -10,13 +10,18 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function login(Request $request) {
-        $credentials = $request->only('email', 'password');
+
+        $credentials = $request->only(['email', 'password']);
+    
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return response()->json("Authenticated");
+            $request->session()->regenerate();
+    
+            return response()->json('Login successful', 200);
         }
-        return response()->json("Authentication failed", 401);
+    
+        return response()->json('The provided credentials do not match our records.', 401);
     }
+    
 
     public function register(Request $request) {
         $validatedData = $request->validate([
