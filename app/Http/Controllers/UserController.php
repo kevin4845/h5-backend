@@ -12,7 +12,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return User::all();
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'An error occurred while fetching users'], 500);
+        }
     }
 
     /**
@@ -20,7 +24,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $user = User::create($request->all());
+            return response()->json(['message' => 'User created successfully'], 201);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'An error occurred while creating a user'], 500);
+        }
     }
 
     /**
@@ -28,7 +37,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        try {
+            return $user;
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'An error occurred while fetching the user'], 500);
+        }
     }
 
     /**
@@ -36,7 +49,12 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        try {
+            $user->update($request->all());
+            return response()->json(['message' => 'User updated successfully'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'An error occurred while updating the user'], 500);
+        }
     }
 
     /**
@@ -44,6 +62,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+            return response()->json(['message' => 'User deleted successfully'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'An error occurred while deleting the user'], 500);
+        }
     }
 }
