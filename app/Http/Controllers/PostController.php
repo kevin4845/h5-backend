@@ -26,10 +26,9 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        return Auth::user();
         try {
             $post = Post::create([
-                "name" => $request->get('name'),
+                "title" => $request->get('title'),
                 "description" => $request->get('description'),
                 "price" => $request->get('price'),
                 "user_id" => Auth::id()
