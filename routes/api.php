@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -26,5 +27,6 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::apiResource('users', UserController::class);
     Route::apiResource('posts', PostController::class);
+    Route::apiResource('messages', MessageController::class);
 
 });
