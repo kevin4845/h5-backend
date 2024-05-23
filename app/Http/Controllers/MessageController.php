@@ -34,7 +34,16 @@ class MessageController extends Controller
      */
     public function store(StoreMessageRequest $request)
     {
-        //
+        try {
+            $message = Message::create([
+                "message" => $request->get('message'),
+                "to_user_id" => $request->get('to_user_id'),
+                "from_user_id" => auth()->id()
+            ]);
+            return response()->json(['message' => 'Message created successfully'], 201);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'An error occurred while creating a message'], 500);
+        }
     }
 
     /**
