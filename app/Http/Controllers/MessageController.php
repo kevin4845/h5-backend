@@ -42,7 +42,8 @@ class MessageController extends Controller
             ]);
             return response()->json(['message' => 'Message created successfully'], 201);
         } catch (\Throwable $th) {
-            return response()->json(['message' => 'An error occurred while creating a message'], 500);
+            return $th;
+            //return response()->json(['message' => 'An error occurred while creating a message'], 500);
         }
     }
 

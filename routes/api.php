@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -28,5 +29,6 @@ Route::middleware(['auth:api'])->group(function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('posts', PostController::class);
     Route::apiResource('messages', MessageController::class);
+    Route::apiResource('chats', ChatController::class);
 
 });
