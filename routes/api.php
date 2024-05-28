@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,5 +31,6 @@ Route::middleware(['auth:api'])->group(function () {
     Route::apiResource('posts', PostController::class);
     Route::apiResource('messages', MessageController::class);
     Route::apiResource('chats', ChatController::class);
+    Route::apiResource('timelines', TimelineController::class);
 
 });
